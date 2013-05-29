@@ -8,5 +8,15 @@ feature 'Creating Projects' do
 		fill_in 'Description', :with => "A text-editor for Ubuntu"
 		click_button 'Create Project'
 		page.should have_content('Project has been created.')
+		
+		project = Project.find_by_name("Sublime Text 2")
+		page.current_url.should == project_url(project)
+		title = "Sublime Text 2 - Projects - Ticketee"
+		find("title").should have_content(title)
+
 	end
+
+	
 end
+
+
