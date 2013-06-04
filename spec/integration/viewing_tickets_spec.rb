@@ -3,10 +3,12 @@ require 'spec_helper'
 feature "Viewing tickets" do 
 	before do
 		sublime_text_2 = Factory(:project, :name => "Sublime Text 2")
-		Factory(:ticket,
-				:project => sublime_text_2,
-				:title => "Make it shiny!",
-				:description => "Gradients! Starbursts! Oh my!")
+		user = Factory(:user)
+		ticket = Factory(:ticket,
+						:project => sublime_text_2,
+						:title => "Make it shiny!",
+						:description => "Gradients! Starbursts! Oh my!")
+		ticket.update_attribute(:user, user)
 
 		google_chrome = Factory(:project, :name => "Google Chrome")
 
